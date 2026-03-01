@@ -2,6 +2,7 @@
 #include <lpc21xx.h>
 #include <stdio.h>
 #include "cantransmit.h" // CAN transmit header
+#include "ultrasonic_driver.c"
 
 unsigned int ultrasonic_reading(void);//function declartion
 
@@ -18,7 +19,7 @@ can2_init();     // Initializing CAN controller
  while(1)
  { 
    distance=ultrasonic_reading();  // function call to read distance from ultrasonic sensor 
-   delay_can(1000);               // Delay of 1000ms between transmissions
+   delay_millisec(1000);               // Delay of 1000ms between transmissions
    m1.id=0x01;   //Messgae ID
    m1.dlc=4;     // data length code
    m1.rtr=0;     // data frame
