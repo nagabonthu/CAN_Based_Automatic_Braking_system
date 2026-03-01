@@ -11,8 +11,7 @@
 int main()
 {
 unsigned int dist;
-CAN2_MSG m1;      // CAN message structure
-	
+CAN2_MSG m1;      // CAN message structure	
 can2_init();     // Initializing CAN controller	
  while(1)
  { 
