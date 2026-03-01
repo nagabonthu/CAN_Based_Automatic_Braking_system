@@ -2,10 +2,7 @@
 /* can2_driver.c */
 
 typedef unsigned int u32;   // typedef for 32-bit unsigned type 
-
-// Function prototypes
 void can2_init(void);
-void delay_millisec(unsigned int);
 
 // CAN2 message structure
 typedef struct CAN2
