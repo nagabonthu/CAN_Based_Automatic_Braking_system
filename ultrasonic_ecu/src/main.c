@@ -1,8 +1,8 @@
 /** Ultrasonic sensor distance calculation and CAN transmit to dashboard ECU */
 #include <lpc21xx.h>
 #include <stdio.h>
-#include "cantransmit.h" // CAN transmit header
-#include "ultrasonic_driver.c"
+#include "candriver.c" // CAN transmit header
+#include "ultrasonic_driver.c"//ultrasonic reading headeer
 
 unsigned int ultrasonic_reading(void);//function declartion
 
