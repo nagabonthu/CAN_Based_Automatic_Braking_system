@@ -8,14 +8,6 @@ The system simulates a real-time vehicle environment where speed and obstacle di
 The architecture follows a distributed ECU model similar to real automotive systems.  
 Each node performs a dedicated function and communicates over CAN Bus.
 
-This project provides Practical experience in:
-
-- Automotive Embedded Systems
-- CAN Networking
-- Distributed Control Systems
-- Real-Time Risk Assessment
-- Peripheral Integration
-- Safety-Critical Logic Implementation
 
 ## System Architecture
 
@@ -75,21 +67,20 @@ When the obstacle is removed, the vehicle resumes normal operation.
 
 ## Software
 
-- Embedded C (Bare-Metal Programming)
+- Embedded C 
 - Keil µVision IDE
-- Flash Magic (for programming LPC2148)
-- UART Serial Terminal (for debugging)
+- Flash Magic
+- UART Serial Terminal
 
 ## Hardware
 
 - LPC2129 ARM7 Microcontroller
-- CAN Transceiver Module
 - HC-SR04 Ultrasonic Sensor
 - MCP3204 SPI ADC (12-bit)
-- Potentiometer (Speed Simulation)
+- Potentiometer
 - 16x2 LCD Display
-- Relay Module (Brake Control)
-- DC Motor / Generator (Vehicle Simulation)
+- Relay Module 
+- DC Motor  
 
 ## Working Principle
 
