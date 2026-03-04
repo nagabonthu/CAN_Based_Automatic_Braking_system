@@ -1,64 +1,38 @@
+ 
+/**  Sends speed to Dashboard ECU over CAN **/ 
 
 #include <lpc21xx.h>
-#include <stdio.h>
 
-#include "cantransmit.h"
-#include "lcd.h"
-//#include "uartbaud.c"
+#include "can_driver.c"      
+#include "spi_driver.c"         
 
-void float_display(float f);
-
- int main()
+int main()
 {
-    //CAN2_MSG m1;
-    unsigned char arr[20];
-    int f;
-	int speed,adc;
-  //uart0_init(115200);
-   Init_SPI0();
-   //can2_init();
-   lcd_init();
-  // uart0_init(115200);
-    
+    int adc, speed;
+
+    CAN2_MSG m1;
+
+    /* Init peripherals */
+    Init_SPI0();     // SPI0 for MCP3204
+    can2_init();     // CAN2 init (125 kbps)
 
 
-	IOPIN0|= (1<<7);
-    
-   //IOCLR0= (1<<7);
-    //IOSET0= (1 << 7);    // CS high (inactive)
-  
+    while (1)
+    {
+        
+        adc = Read_ADC_MCP3204(1);//Read raw ADC (0–4095) 
+ 
+        speed = (adc*100) / 4095;// Convert ADC to speed range 0–100 
 
-    //uart0_tx_string("nodeB TESTING CAN\r\n");
-          
-//lcd_cmd(0x80);          
-//lcd_string("Speed:");
+        /* Send speed via CAN */
+        m1.id = 0x02;       // Speed message ID
+        m1.rtr = 0;          // Data frame
+        m1.dlc = 1;          // 1 byte data
+        m1.byteA = (unsigned char)speed;  // speed in byte0
+        m1.byteB = 0;        
+        can2_tx(m1);
 
-
-lcd_cmd(0x01);   // clear once
-
-while(1)
-{
-    adc = Read_ADC_MCP3204(1);      // raw 0–4095
-    speed = (adc * 100) / 4095;     // convert to 0–100
-
-    lcd_cmd(0x80);                  // first line
-
-    sprintf((char*)arr, "Speed:%3d Kmph ", speed);
-    lcd_string((char*)arr);
-
-    delay_ms(200);
-}             // small refresh delay
+        delay_millisec(200);  // small  delay
+    }
 }
-
-/*		//lcd_cmd(0x88);
-		//lcd_string("Kmph");
-
-
-        /*m1.id   = 0x02;
-        m1.dlc  = 1;
-        m1.rtr  = 0;
-        m1.byteA = (unsigned char)f;  */
-
-       //can2_tx(m1);
-       
 																																													   /**/
