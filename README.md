@@ -3,11 +3,7 @@
 
 This project implements a multi-node automotive safety system using CAN Bus communication.  
 The system simulates a real-time vehicle environment where speed and obstacle distance are continuously monitored, and automatic braking is applied when collision risk is detected.
-
-The architecture follows a distributed ECU model similar to real automotive systems.  
-Each node performs a dedicated function and communicates over CAN Bus.
-
-
+  
 ## System Architecture
 
 The system consists of three independent ECUs connected through CAN Bus.
@@ -47,6 +43,18 @@ The potentiometer is used to simulate vehicle speed in this project.
 
 This ECU acts as the central decision-making unit.
 
+## Working Principle
+
+1. Ultrasonic ECU measures obstacle distance.
+2. Speed ECU measures vehicle speed.
+3. Both ECUs transmit data via CAN Bus.
+4. Main ECU receives speed and distance.
+5. TTC is calculated.
+6. Collision risk zone is determined.
+7. Brake is applied automatically if required.
+8. Dashboard continuously updates speed and distance.
+
+
 ### System Actions
 
 - Safe Zone:
@@ -81,15 +89,5 @@ When the obstacle is removed, the vehicle resumes normal operation.
 - Relay Module 
 - DC Motor  
 
-## Working Principle
-
-1. Ultrasonic ECU measures obstacle distance.
-2. Speed ECU measures vehicle speed.
-3. Both ECUs transmit data via CAN Bus.
-4. Main ECU receives speed and distance.
-5. TTC is calculated.
-6. Collision risk zone is determined.
-7. Brake is applied automatically if required.
-8. Dashboard continuously updates speed and distance.
 
 
