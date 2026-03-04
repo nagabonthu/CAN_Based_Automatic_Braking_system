@@ -1,4 +1,3 @@
-# CAN-Based Automatic Collision Risk Detection & Braking System
 
 ## Overview
 
